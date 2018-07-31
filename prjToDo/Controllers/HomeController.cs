@@ -16,5 +16,22 @@ namespace prjToDo.Controllers
             var todos = db.tToDo.OrderByDescending(m => m.Date).ToList();
             return View(todos);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create
+            (string title,string image,DateTime date)
+        {
+            tToDo toDo = new tToDo();
+            toDo.Title = title;
+            toDo.Image = image;
+            toDo.Date = date;
+            db.tToDo.Add(toDo);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
