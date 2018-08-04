@@ -7,7 +7,7 @@
 <h2>行事曆</h2>
 
 <p>
-    @Html.ActionLink("行事曆", "Create")
+    @Html.ActionLink("新增行事曆", "Create")
 </p>
 <table class="table">
     <tr>
@@ -42,7 +42,8 @@
         </td>
         <td>
             @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+            @Html.ActionLink("刪除", "Delete", new { id = item.Id }
+            ,new { onclick="return confirm('確定刪除?')"})
         </td>
     </tr>
 }

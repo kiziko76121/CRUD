@@ -33,5 +33,31 @@ namespace prjToDo.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete(int id)
+        {
+            var todo = db.tToDo.Where(m => m.Id == id).FirstOrDefault();
+            db.tToDo.Remove(todo);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var todo = db.tToDo.Where(m => m.Id == id).FirstOrDefault();
+            return View(todo);
+        }
+
+        [HttpPost]
+        public ActionResult Edit
+            (int id,string title, string image, DateTime date)
+        {
+            tToDo toDo = db.tToDo.Where(m => m.Id == id).FirstOrDefault();
+            toDo.Title = title;
+            toDo.Image = image;
+            toDo.Date = date;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
